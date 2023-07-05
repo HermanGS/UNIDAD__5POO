@@ -1,0 +1,46 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    position: absolute;
+    transform-origin: translate(-50%,-50%);
+    top :50%;
+    left: 50%;
+}
+input[type = "radio"]{
+    display: none;
+}
+label[id="coolBotton"]{
+    position: relative;
+    color: #01cc65;
+    font-family: 'Poppins',sans-serif ;
+    font-size: 30px;
+    border: 2px solid #01cc65;
+    border-radius: 5px;
+    padding: 10px 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+label[id="coolBotton"]:before{
+    position:absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    border :3px solid #01cc65;
+    border-radius: 50px; 
+    margin-right: 20px;
+}
+input[type="radio"]:checked + label{
+    background-color: #01cc65;
+    color: white;
+}
+input[type="radio"]:checked + label:before{
+    height: 16px;
+    width: 16px;
+    border: 10px solid white;
+    background-color: #01cc65;
+}
+

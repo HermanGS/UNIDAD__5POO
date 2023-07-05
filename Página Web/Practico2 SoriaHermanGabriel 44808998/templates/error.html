@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Error{% endblock %}
+{% block content %}
+<h5> {{ error }} </h5>
+<div>
+    <br><br><form action = "{{ url_for('inicio') }}">   		 
+<br>
+<input type = "submit" value = "Volver" /><br><br>
+</div>
+{% endblock %}

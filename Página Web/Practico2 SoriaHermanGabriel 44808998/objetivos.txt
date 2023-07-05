@@ -1,0 +1,14 @@
+
+
+
+
+haber
+
+
+
+pagina_inicio -> Registrar Asistencia Funcion
+                                        muchos                              uno solo                       unosolo   muchos                 
+Registrar Asistencia Funcion (preceptor,cursos) -> Seleccionar Curso.html (idcurso) -> listado Asistencia  (curso,estudiantes) 
+
+                    unosolo  muchos
+listado Asistencia  (curso,estudiantes) ->  seleccionar_alumno.html (idAlumno)  -> Asistencia Alumno Funcion 

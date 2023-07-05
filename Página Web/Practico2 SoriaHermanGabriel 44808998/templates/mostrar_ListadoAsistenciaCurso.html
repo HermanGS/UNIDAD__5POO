@@ -1,0 +1,68 @@
+{% extends "base_template.html" %}
+{% block title %}LISTADO{% endblock %}
+<html>
+<body>
+    {% block content %}
+    <h3>Listado detallado:</h3>
+    
+    <table>
+        <tr>
+            <td>Nombre alumnos</td>
+            <td>Clases de aula presentes</td>
+            <td>Clases de Educacion fisica presente</td>
+            <td>Clases de aula ausentes justificadas</td>
+            <td>Clases de aula ausentes injustificadas</td>
+            <td>Clases de Educacion Fisicas justificadas</td>
+            <td>Clases de Educacion Fisica injustificadas</td>
+            <td>Computo total de inasistencias</td>
+        </tr>
+        {% for alumno in alumnos | sort(attribute='nombre'): %}
+            
+            {% if alumno.idcurso == curso.id : %}
+                {% set contador = {
+                'aulaasistencia': 0,
+                'eduasistencia': 0,
+                'aulajustificada': 0,
+                'aulainjustificada': 0,
+                'edujustificada': 0,
+                'eduinjustificada': 0,
+                'total': 0
+                } %}
+        
+        
+        {% for asis in asistencia %}
+        {% if asis.idestudiante == alumno.id and asis.asistio.lower() == 's' and asis.codigoclase == 1 %}
+        {% set _ = contador.update({'aulaasistencia': contador.aulaasistencia + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 's' and asis.codigoclase == 2 %}
+        {% set _ = contador.update({'eduasistencia': contador.eduasistencia + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 1 and asis.justificacion != '' %}
+        {% set _ = contador.update({'aulajustificada': contador.aulajustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 1 and asis.justificacion == '' %}
+        {% set _ = contador.update({'aulainjustificada': contador.aulainjustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 1}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 2 and asis.justificacion != '' %}
+        {% set _ = contador.update({'edujustificada': contador.edujustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 0.5}) %}
+        {% elif alumno.id == asis.idestudiante and asis.asistio == 'n' and asis.codigoclase == 2 and asis.justificacion == '' %}
+        {% set _ = contador.update({'eduinjustificada': contador.eduinjustificada + 1}) %}
+        {% set _ = contador.update({'total': contador.total + 0.5}) %}
+        {% endif %}
+        {% endfor %}
+        
+        <tr>
+            <td>{{ alumno.nombre }} {{ alumno.apellido }}</td>
+            <td>{{ contador.aulaasistencia }}</td>
+            <td>{{ contador.eduasistencia }}</td>
+            <td>{{ contador.aulajustificada }}</td>
+            <td>{{ contador.aulainjustificada }}</td>
+            <td>{{ contador.edujustificada }}</td>
+            <td>{{ contador.eduinjustificada }}</td>
+            <td>{{ contador.total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+    {% endblock %}
+</body>
+</html>

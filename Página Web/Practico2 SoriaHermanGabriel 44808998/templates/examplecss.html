@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% extends "base_template.html" %}
+   {% block title%} Colegio San Miguel {% endblock %}
+   
+</head>
+
+<body>
+   {% block content %}
+
+   <header>
+      <h2>Colegio San Miguel</h2>
+   </header>
+
+   
+
+   <nav>
+      <ul>
+  
+      <li><a href="#">Registrar Asistencia de un Curso </a></li>
+      <br>
+      <br>
+      <li><a href="#">Obtener informe detallado</a></li>
+      </ul>
+   </nav> 
+
+
+
+   <!-- si va a enviar datos al servidor use etiqueta form, si solo va a mostrar datos use la etiqueta article-->
+   
+         <article>
+            <h1>Bienvenido Preceptor/a {{ usuario.nombre }}</h1>
+            <p>Seleccione la funcionalidad que desee</p>
+         </article>
+      
+   
+
+
+
+ <footer>
+   <p>Dirección y teléfono del colegio</p>
+</footer>
+{% endblock %}
+
+
+</body>
+</html>

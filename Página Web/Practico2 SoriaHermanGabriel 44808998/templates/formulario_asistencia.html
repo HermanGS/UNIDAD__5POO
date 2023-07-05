@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% extends "base_template.html" %}
+   {% block title%} Colegio San Miguel {% endblock %}
+   
+</head>
+
+<body>
+   {% block content %}
+
+   <header>
+      <h2>Colegio San Miguel</h2>
+   </header>
+
+   
+   <!-- si va a enviar datos al servidor use etiqueta form, si solo va a mostrar datos use la etiqueta article-->
+
+            <!-- Atributos Objeto Asistencia : 
+            id = db.Column(db.Integer,primary_key = True)
+            fecha = db.Column(db.DateTime,nullable = False)
+            codigoclase = db.Column(db.Integer,db.ForeignKey('curso.id'),nullable = False)
+            asistio = db.Column(db.String(1),nullable = False)
+            justificacion = db.Column(db.String(100),nullable = False)
+        
+            #asociacion muchos con estudiante
+            idestudiante = db.Column(db.Integer,db.ForeignKey('estudiante.id'))
+            -->
+   
+   <div class="alinear">     
+         <h5>
+            Usuario : {{preceptor.nombre}} {{preceptor.apellido}}
+         </h5>
+        
+        <br>        
+        <hgroup id = "hgrupo_Seleccionar">
+            <h3>Curso numero : {{curso.id}}  Año {{curso.anio}}  Division {{curso.division}}  </h2>
+            <h3>Alumno numero: {{alumno.id}} Nombre {{alumno.nombre}} Apellido {{alumno.apellido}} </h2>
+            <h4>Ingrese los datos de la Asistencia : </h1>
+        </hgroup>
+        
+        <form action="{{url_for('IngresoAsistencia')}}" method="post">
+            
+            <input type="hidden" name="alumnoid" value="{{alumnoid}}" required>
+
+            <label for = "tipoClase" id = "label">Elija el tipo de Clase :</label>
+            <select name="tipoClase" id="select">
+               <optgroup>
+                  <option value="1">Aula</option>
+                  <option value="2">Educacion Fisica</option>
+               </optgroup>
+            </select>
+
+            <label for= "fecha" id="label"> Fecha :</label>
+            <input type = "date" name= "fecha"  value="2014-01-01" min="2023-01-01" max="2023-12-31" required/> 
+            
+            
+            
+            <label for= "asistio" id="label"> Asistencia :</label>
+            <div >
+                  <input type="radio" name="asistio" value="s"class="inputRadio" id="si"/>
+                  <label for="id" class="inputRadio">SI</label>
+                  
+                  <input type="radio" name="asistio" value="n"class="inputRadio" id="no"checked/>
+                  <label for="no" class="inputRadio">NO</label>
+            </div>            
+                  
+            <label for = "justificacion" id ="label">Justificacion</label>
+            <input type= "text" name ="justificacion"/>
+            
+            
+            <input type="submit" value="Guardar Asistencia" class="boton-sumbit"/>
+
+        </form>
+   </div>     
+
+        
+    
+<!--
+ <footer>
+   <p>Dirección y teléfono del colegio</p>
+</footer>
+-->
+{% endblock %}
+
+
+</body>
+</html>

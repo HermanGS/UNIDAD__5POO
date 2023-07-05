@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% extends "base_template.html" %}
+   {% block title%} Colegio San Miguel {% endblock %}
+   
+</head>
+
+<body>
+   {% block content %}
+
+   <header>
+      <h2>Colegio San Miguel</h2>
+   </header>
+
+   
+
+      <nav>
+
+      </nav> 
+
+
+
+
+   <!-- si va a enviar datos al servidor use etiqueta form, si solo va a mostrar datos use la etiqueta article-->
+   
+    <article>
+        Usuario : {{preceptor.nombre}} {{preceptor.apellido}}
+        <br>        
+
+        <h1>Seleccione Un curso para registrar Asistencias</h1>
+        
+         <!-- {{ cursos }} -->  
+        <form action="{{url_for('ListadoAsistencia')}}" method = 'post' >
+            <p>
+               {% if cursos is not none :%}
+                    <select name="idcurso" id="curso">
+                        {% for curso in cursos %}
+
+                        <option value="{{curso.id}}"> Año : {{curso.anio}} | División :  {{curso.division}}</option>
+                        <br>
+                        {% endfor %}
+                     
+                    </select>
+               {% endif %} 
+            <button type="submit">Enviar</button>  
+            </p>
+        </form>
+        
+    </article>
+     
+ <footer>
+   <p>Dirección y teléfono del colegio</p>
+</footer>
+{% endblock %}
+
+
+</body>
+</html>

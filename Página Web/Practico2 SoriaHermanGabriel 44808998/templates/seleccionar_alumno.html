@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% extends "base_template.html" %}
+   {% block title%} Colegio San Miguel {% endblock %}
+   
+</head>
+
+<body>
+   {% block content %}
+
+   <header>
+      <h2>Colegio San Miguel</h2>
+   </header>
+
+   
+ 
+
+   <!-- si va a enviar datos al servidor use etiqueta form, si solo va a mostrar datos use la etiqueta article-->
+   
+    <article>
+        
+      
+               
+
+        <hgroup id = "hgrupo_Seleccionar">
+            <h5> Usuario : {{preceptor.nombre}} {{preceptor.apellido}} </h3>
+            <h3>Curso {{curso.id}}  Año {{curso.anio}}  Division {{curso.division}}  </h2>
+            <h4>Seleccione Un Alumno para ingresar la Asistencia : </h1>
+        </hgroup>
+
+        {%if alumnos is not none: %}
+        
+        <nav>
+            <ul>
+               {% for alu in alumnos %}
+                  <li> <a class="alindo" href="{{url_for('AsistenciaAlumno',alumnoid = alu.id,cursoid = curso.id)}}">{{alu.retornaNombreyApellidoSpace()}}</a></li>  
+                  <br>
+                  <br>
+               {% endfor %}
+         </ul>
+        </nav>
+        
+            {% endif%}
+    </article>
+     
+ <footer>
+   <p>Dirección y teléfono del colegio</p>
+</footer>
+{% endblock %}
+
+
+</body>
+</html>
